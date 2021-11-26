@@ -23,7 +23,7 @@ _respuesta0 = parseText "<t size='0.97' font='PuristaMedium'>
 	U --- Abrir / Cerrar Vehículo <br/>
 	T --- Abrir maletero del Vehículo <br/>
 	F1 --- Tapones <br/>
-	º (arriba del TAB) --- Enseñar Identificación <br/>
+	º (arriba del TAB) --- Enseñar identificación <br/>
 	Windows --- Interactuar <br/>
 	F5 --- Rendirse / Levantar las Manos <br/>
 	shift + G --- Noquear / Golpear con Arma <br/>
