@@ -1,6 +1,6 @@
 
 /*
-por: Medel
+por: Icaruk & Medel
 	["menu"] call ica_fnc_ayudador;
 */
 
@@ -110,7 +110,7 @@ _respuesta7 = parseText "<t size='0.97' font='PuristaMedium'>
 
 _respuesta8 = parseText "<t size='0.97' font='PuristaMedium'>
 	Programación:<br/>
-	David Medel, Icaruk y José Estrada<br/> <br/>
+	Medel, Icaruk y José Estrada<br/> <br/>
 
 	Mapeo:<br/>
 	Davide Sousa y Oscar Montero<br/><br/>
@@ -118,7 +118,7 @@ _respuesta8 = parseText "<t size='0.97' font='PuristaMedium'>
 	Diseño:<br/>
 	Miguel Perez<br/><br/>
 
-	Equipo de Desarrollo Altis Life.<br/>
+	Equipo de desarrollo POP Altis Life.<br/>
 </t>";
 
 if (_param == "menu") exitWith {
