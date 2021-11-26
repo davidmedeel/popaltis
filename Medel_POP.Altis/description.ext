@@ -1,0 +1,299 @@
+
+enableDebugConsole[] = {"76561198844937661"};
+
+disableChannels[] = {
+	{0, true, true}, //--- Chat Global
+	{1, true, true}, //--- Side Chat Policia
+	{2, true, true}, //--- Canal de Comandante
+	{3, false, false}, //--- Canal de Grupo
+	{4, false, false}, //--- Canal del Vehiculo
+	{5, false, false}, //--- Comunicacion Directa
+	{6, true, true},	//--- Sistema de Chat
+	{7, true, true},  //--- Side Chat para Civiles
+	{8, true, true}  //--- Side Chat para EMS
+};
+
+overviewText = "POP Altis Life";
+
+unsafeCVL = 1;
+
+// Va raro
+//allowFunctionsRecompile = 1; // Bohemia miente, sí que afecta en el editor
+
+#include "CfgRemoteExec.hpp"
+#include "dialog\MasterHandler.hpp"
+#include "config\Config_Master.hpp"
+#include "dialog\crafteo.hpp"
+#include "medel\maverick\medel_master.cpp"
+#include "medel\admin\VVS\menu.h"
+
+class CfgServer {
+    DatabaseName = "altislife";
+    DebugMode = 1; //Consola de depuracion / 0 = Desactivado | 1 = Activado
+    HeadlessSupport = 0; //HeadslessSupport / 0 = Desactivado | 1 = Activado
+};
+
+class RscTitles {
+    #include "dialog\progress.hpp"
+
+    #include "medel\maverick\talent-tree-modular\gui\_masterTitles.cpp"
+    #include "medel\maverick\tuning\dialogs\titles.hpp"
+    #include "medel\maverick\medel_titles_master.cpp"
+
+	#include "dialog\DNI.h"
+    #include "dialog\PLACA_EMS.h"
+    #include "dialog\PLACA_POLICIA.h"
+
+    #include "dialog\Logo.hpp"
+    #include "dialog\HUDMedel.hpp"
+    #include "dialog\anuncio.hpp"
+    #include "dialog\barrita.hpp"
+    #include "dialog\masuno.hpp"
+};
+
+class CfgFunctions {
+    #include "medel\funcionesMedel.hpp"
+    #include "ica\funcionesIca.hpp"
+    #include "estrada\funcionesEstrada.hpp"
+    #include "Functions.hpp"
+    #include "medel\maverick\medel_functions_master.cpp"
+    #include "medel\admin\VVS\Functions.h"
+};
+
+class CfgSounds {
+    sounds[] = {};
+	
+    class Ems1 {
+        name = "Ems1";
+        sound[] = {"\sounds\ems_sirena_1.ogg", 6.0, 1};
+        titles[] = {};
+    };
+
+    class Ems2 {
+        name = "Ems2";
+        sound[] = {"\sounds\ems_sirena_2.ogg", 7.0, 1};
+        titles[] = {};
+    };
+
+    class Ems3 {
+        name = "Ems3";
+        sound[] = {"\sounds\Ems1s.ogg", 6.0, 1};
+        titles[] = {};
+    };
+
+    class poli1 {
+        name = "poli1";
+        sound[] = {"\sounds\poli_sirena_1.ogg", 3.5, 1};
+        titles[] = {};
+    };
+
+    class poli2 {
+        name = "poli2";
+        sound[] = {"\sounds\poli_sirena_2.ogg", 5.0, 1};
+        titles[] = {};
+    };
+
+    class poli3 {
+        name = "poli3";
+        sound[] = {"\sounds\poli_sirena_Corta1.ogg", 4.0, 1};
+        titles[] = {};
+    };
+    
+    class Conductor {
+        name = "Conductor";
+        sound[] = {"\sounds\Conductor.ogg", 15.0, 1};
+        titles[] = {};
+    };
+
+    class explosion
+    {
+        name = "explosion";
+        sound[] = {"\sounds\explosion.ogg",1.0, 1};
+        titles[] = {};
+    };
+
+    class mensaje
+    {
+        name = "mensaje";
+        sound[] = {"\sounds\mensaje.ogg",1.0, 1};
+        titles[] = {};
+    };
+
+	class mordaza {
+		name = "mordaza";
+		sound[] = {"\sounds\mordaza.ogg", 1.0, 1};
+		titles[] = {};
+	};
+
+    class taser {
+        name = "taser";
+        sound[] = {"\sounds\taser.ogg", 0.5, 1};
+        titles[] = {};
+    };
+
+    class flashbang {
+        name = "flashbang";
+        sound[] = {"\sounds\flashbang.ogg", 1.0, 1};
+        titles[] = {};
+    };
+
+    class mining {
+        name = "mining";
+        sound[] = {"\sounds\mining.ogg", 1.0, 1};
+        titles[] = {};
+    };
+
+    class esposas {
+        name = "esposas";
+        sound[] = {"\sounds\esposas.ogg", 1.0, 1};
+        titles[] = {};
+    };
+
+    class harvest {
+        name = "harvest";
+        sound[] = {"\sounds\harvest.ogg", 1.0, 1};
+        titles[] = {};
+    };
+
+    class lockCarSound {
+        name = "lockCarSound";
+        sound[] = {"\sounds\carLock.ogg", 1.0, 1};
+        titles[] = {};
+    };
+
+    class fotoradar {
+        name = "fotoradar";
+        sound[] = {"\sounds\fotoradar.ogg", 1.0, 1};
+        titles[] = {};
+    };
+
+    class unlockCarSound {
+        name = "unlockCarSound";
+        sound[] = {"\sounds\carUnlock.ogg", 0.75, 1};
+        titles[] = {};
+    };
+};
+
+class CfgDebriefing {
+    class NotWhitelisted {
+        title = "$STR_NotWhitelisted_Title";
+        subtitle = "$STR_NotWhitelisted_SubTitle";
+        description = "$STR_NotWhitelisted_Descript";
+        pictureBackground = "";
+        picture = "";
+        pictureColor[] = {0,0.3,0.6,1};
+    };
+
+    class Kick {
+        title = "Te han Expulsado";
+        subTitle = "";
+        description = "Un admin te ha expulsado";
+        pictureBackground = "";
+        picture = "";
+        pictureColor[] = {0,0.3,0.6,1};
+    };
+
+    class VetoPolicia {
+        title = "Te han Baneado";
+        subTitle = "";
+        description = "Un admin te ha baneado";
+        pictureBackground = "";
+        picture = "";
+        pictureColor[] = {0,0.3,0.6,1};
+    };
+
+    class FinServicio {
+        title = "Has salido de Servicio";
+        subTitle = "";
+        description = "Has salido de servicio, muchas gracias por tus servicios!";
+        pictureBackground = "";
+        picture = "";
+        pictureColor[] = {0,0.3,0.6,1};
+    };
+
+    class VetadoPolicia {
+        title = "$STR_Baneado_Title";
+        subtitle = "$STR_Baneado_SubTitle";
+        description = "$STR_Baneado_Descript";
+        pictureBackground = "";
+        picture = "";
+        pictureColor[] = {0,0.3,0.6,1};
+    };
+
+    class Frontera {
+        title = "Cambiate tu Nombre";
+        subTitle = "";
+        description = "Pon tu anterior nombre para poder entrar a jugar!";
+        pictureBackground = "";
+        picture = "";
+        pictureColor[] = {0,0.3,0.6,1};
+    };
+};
+
+class CfgNotifications {
+    class MedicalRequestEmerg {
+        title = "$STR_MedicalRequestEmerg_Title";
+        iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIcon_ca.paa";
+        description = "%1";
+        duration = 7;
+        priority = 7;
+    };
+
+    class DeliveryAssigned {
+        title = "$STR_DeliveryAssigned_Title";
+        iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIcon_ca.paa";
+        description = "%1";
+        duration = 10;
+        priority = 7;
+    };
+
+    class DeliveryFailed {
+        title = "$STR_DeliveryFailed_Title";
+        iconPicture = "\A3\ui_f\data\map\mapcontrol\taskiconfailed_ca.paa";
+        description = "%1";
+        duration = 7;
+        priority = 7;
+    };
+
+    class DeliverySucceeded {
+        title = "$STR_DeliverySucceeded_Title";
+        iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIcondone_ca.paa";
+        description = "%1";
+        duration = 6;
+        priority = 6;
+    };
+
+    class TextMessage {
+        title = "$STR_TextMessage_Title";
+        iconPicture = "icons\ico_messageNew.paa";
+        description = "%1";
+        duration = 10;
+        priority = 6;
+    };
+
+    class PoliceDispatch {
+        title = "$STR_PoliceDispatch_Title";
+        iconPicture = "icons\ico_messagePolice.paa";
+        description = "%1";
+        duration = 10;
+        priority = 6;
+    };
+
+    class AdminDispatch {
+        title = "$STR_AdminDispatch_Title";
+        iconPicture = "icons\ico_messageAdmin.paa";
+        description = "%1";
+        duration = 10;
+        priority = 6;
+    };
+
+    class AdminMessage {
+        title = "$STR_AdminMessage_Title";
+        iconPicture = "icons\ico_messageAdmin.paa";
+        description = "%1";
+        duration = 10;
+        priority = 5;
+    };
+};
+
+#include "infiSTAR_AdminMenu.hpp"
