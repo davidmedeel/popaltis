@@ -28,7 +28,7 @@ unsafeCVL = 1;
 #include "medel\admin\VVS\menu.h"
 
 class CfgServer {
-    DatabaseName = "altislife";
+    DatabaseName = "popaltis_medel";
     DebugMode = 1; //Consola de depuracion / 0 = Desactivado | 1 = Activado
     HeadlessSupport = 0; //HeadslessSupport / 0 = Desactivado | 1 = Activado
 };
